@@ -32,8 +32,15 @@
           home-manager.users.devtrung = {pkgs, ...}: {
             home.stateVersion = "26.05";
 
-            # Config file copy
+            # Files copy
             home.fileOverlapResolution = "override";
+            home.file."Pictures/Wallpapers" = {
+              source = ./wallpapers;
+              recursive = true;
+            };
+            home.file."pfp.png".source = ./pfp.png;
+
+            # Config file copy
             xdg.configFile."hypr" = {
               source = "${serpantinum}/compositors/hyprland";
               recursive = true;
@@ -127,6 +134,7 @@
                   language = "en";
                   weatherUnit = "metric";
                   weatherInterval = 30;
+                  avatarPath = "/home/devtrung/pfp.png";
                 };
 
                 bar = {
