@@ -148,7 +148,6 @@
                     right = [
                       "tray"
                       [
-                        "kb"
                         "wifi"
                         "bt"
                         "vol"
