@@ -12,6 +12,8 @@
     ./zipline.nix
   ];
 
+  nix.settings.substituters = [ "https://aseipp-nix-cache.global.ssl.fastly.net" ];
+
   # experimental (better UX)
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
@@ -152,6 +154,7 @@
       enable = true;
       enableVirtualCamera = true;
     };
+    nix-ld.enable = true;
   };
 
   # Allow unfree packages
@@ -178,6 +181,10 @@
     #bambu-studio
     orca-slicer
     eza
+    uv
+    go
+    gopls
+    gotools
     flameshot
     alejandra
     grim
