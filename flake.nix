@@ -6,6 +6,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -13,6 +18,7 @@
     nixpkgs,
     serpantinum,
     home-manager,
+    sops-nix,
     ...
   }: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
@@ -23,6 +29,8 @@
 
         serpantinum.nixosModules.default
 
+        sops-nix.nixosModules.sops
+
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
@@ -30,7 +38,42 @@
           home-manager.backupFileExtension = "bak";
           home-manager.extraSpecialArgs = {inherit serpantinum;};
           home-manager.users.devtrung = {pkgs, ...}: {
-            home.stateVersion = "26.05";
+            home.stateVersion = "26.11";
+            
+            # Tell gtk & qt to use dark theme
+            gtk = {
+              enable = true;
+
+              theme = {
+                name = "Adwaita-dark";
+                package = pkgs.gnome-themes-extra;
+              };
+
+              gtk3.extraConfig = {
+                gtk-application-prefer-dark-theme = true;
+              };
+
+              gtk4.extraConfig = {
+                gtk-application-prefer-dark-theme = true;
+              };
+            };
+
+            qt = {
+              enable = true;
+
+              platformTheme.name = "gtk3";
+
+              style = {
+                name = "adwaita-dark";
+                package = pkgs.adwaita-qt;
+              };
+            };
+
+            dconf.settings = {
+              "org/gnome/desktop/interface" = {
+                color-scheme = "prefer-dark";
+              };
+            };
 
             # Files copy
             home.fileOverlapResolution = "override";
@@ -55,7 +98,29 @@
 
             imports = [
               serpantinum.homeManagerModules.default
+              sops-nix.homeManagerModules.sops
             ];
+
+            # SSH config
+            home.file.".ssh/authorized_keys".source =
+              ./config/ssh/authorized_keys;
+
+            home.file.".ssh/config".source =
+              ./config/ssh/config;
+
+            home.file.".ssh/id_ed25519.pub".source =
+              ./config/ssh/id_ed25519.pub;
+
+            sops = {
+              defaultSopsFile = ./secrets/keys.yml;
+
+              age.keyFile = "/home/devtrung/.config/sops/age/keys.txt";
+
+              secrets.ssh_private_key = {
+                path = "/home/devtrung/.ssh/id_ed25519";
+                mode = "0600";
+              };
+            };
 
             programs.zsh = {
               enable = true;
@@ -93,6 +158,11 @@
               };
             };
 
+            programs.vscode = {
+              enable = true;
+              package = pkgs.vscode;
+            };
+
             programs.neovim = {
               enable = true;
               defaultEditor = true;
@@ -116,11 +186,31 @@
               '';
             };
 
+            programs.git = {
+              enable = true;
+
+              settings = {
+                user.email = "vuthanhtrungsuper@gmail.com";
+                user.name = "devtrung";
+              };
+
+              signing = {
+                format = "ssh";
+                key = "/home/devtrung/.ssh/id_ed25519.pub";
+                signByDefault = true;
+              };
+            };
+
             programs.eza = {
               enable = true;
               icons = "auto";
               git = true;
               enableZshIntegration = true;
+            };
+
+            # Home env var
+            home.sessionVariables = {
+              SOPS_EDITOR = "nvim"; # Use vim editor for sops
             };
 
             programs.serpantinum = {
@@ -139,15 +229,20 @@
 
                 bar = {
                   position = "top";
-                  style = "solid";
-                  width = 40;
+                  style = "fill";
+                  width = 60;
                   workspaceCount = 10;
                   modules = {
-                    left = ["workspaces"];
+                    left = [
+                      "left" # quick settings
+                      "workspaces"
+                      "vis"
+                    ];
                     center = ["time"];
                     right = [
                       "tray"
                       [
+                        "weather"
                         "wifi"
                         "bt"
                         "vol"

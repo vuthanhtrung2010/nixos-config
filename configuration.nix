@@ -12,9 +12,14 @@
     ./zipline.nix
   ];
 
-  # experimental again (must here)
+  # experimental (better UX)
   nix.settings.experimental-features = ["nix-command" "flakes"];
+
+  # Is this a VM?
   _module.args.isProxmoxVM = builtins.elem "virtio_pci" (config.boot.initrd.availableKernelModules or []);
+
+  # auto optimize disk space
+  nix.settings.auto-optimise-store = true;
 
   # Disable sleep/hibernate for VM
   systemd.targets.sleep.enable = !config._module.args.isProxmoxVM;
@@ -23,10 +28,10 @@
   systemd.targets.hybrid-sleep.enable = !config._module.args.isProxmoxVM;
 
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
-
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.configurationLimit = 2; # keep at most 2 generation on systemd boot
+  boot.kernelPackages = pkgs.linuxPackages; # LTS kernel, for latest kernel linuxPackages_latest
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -89,12 +94,13 @@
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = false;
 
-  # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
   };
-  services.desktopManager.plasma6.enable = true;
+
+  # Enable KDE Plasa 6
+  #services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -137,13 +143,11 @@
 
   programs = {
     zsh.enable = true;
-    firefox.enable = true;
     hyprland = {
       enable = true;
       withUWSM = true;
     };
     serpantinum.enable = true;
-    vscode.enable = true;
     obs-studio = {
       enable = true;
       enableVirtualCamera = true;
@@ -156,24 +160,30 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    appimage-run
     vim
     wget
+    bind # nslookup, dig, etc
+    kdePackages.dolphin
+    _7zip-zstd
     fastfetch
     home-manager
     btop
-    hyfetch
-    git
     wl-clipboard
-    ungoogled-chromium
+    (ungoogled-chromium.override {
+      enableWideVine = true;
+    })
     qt6.qtsvg
     vesktop
-    bambu-studio
+    #bambu-studio
+    orca-slicer
     eza
     flameshot
     alejandra
     grim
     slurp
     cliphist
+    termius
   ];
 
   fonts = {
@@ -195,10 +205,15 @@
 
   # Enable the OpenSSH daemon.
   virtualisation.docker.enable = true;
+
+  # Allow apps to communicate with the keyring
+  security.polkit.enable = true;
+
   # let's write it shorter
   services = {
     openssh.enable = true;
     tailscale.enable = true;
+    gnome.gnome-keyring.enable = true;
     qemuGuest.enable = config._module.args.isProxmoxVM;
     spice-vdagentd.enable = config._module.args.isProxmoxVM;
   };
@@ -215,5 +230,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "26.05"; # Did you read the comment?
+  system.stateVersion = "26.11"; # Did you read the comment?
 }

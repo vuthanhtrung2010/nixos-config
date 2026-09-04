@@ -1,0 +1,7 @@
+Host dtth2
+  HostName 100.64.0.57
+  User devtrung
+
+Host dtth
+    HostName 100.64.0.69
+	User devtrung
