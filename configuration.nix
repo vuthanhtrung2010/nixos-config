@@ -180,7 +180,7 @@
     vesktop
     #bambu-studio
     orca-slicer
-    eza
+    ffmpeg
     uv
     go
     gopls
