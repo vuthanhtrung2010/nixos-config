@@ -92,7 +92,7 @@
             xdg.configFile."hypr/config/keybinds.lua".source =
               ./config/hypr/keybinds.lua;
             xdg.configFile."fastfetch" = {
-              source = "${serpantinum}/config/fastfetch";
+              source = ./config/fastfetch;
               recursive = true;
             };
 
@@ -153,6 +153,10 @@
 
             programs.kitty = {
               enable = true;
+              font = {
+                name = "JetBrainsMono Nerd Font";
+                size = 12;
+              };
               settings = {
                 shell = "${pkgs.zsh}/bin/zsh";
               };

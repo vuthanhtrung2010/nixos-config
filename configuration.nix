@@ -199,6 +199,7 @@
       google-fonts
       rubik
       nerd-fonts.meslo-lg
+      nerd-fonts.jetbrains-mono
     ];
   };
 
