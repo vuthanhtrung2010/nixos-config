@@ -221,6 +221,7 @@
     openssh.enable = true;
     tailscale.enable = true;
     gnome.gnome-keyring.enable = true;
+    upower.enable = true; # for serpantinum and apps to get battery status
     qemuGuest.enable = config._module.args.isProxmoxVM;
     spice-vdagentd.enable = config._module.args.isProxmoxVM;
   };
