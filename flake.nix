@@ -82,6 +82,17 @@
               ./shell.nix
             ];
 
+            services.easyeffects = {
+              enable = true;
+
+              settings = {
+                General = {
+                  process-all-inputs = false;
+                  process-all-outputs = false;
+                };
+              };
+            };
+
             sops = {
               defaultSopsFile = ./secrets/keys.yml;
 

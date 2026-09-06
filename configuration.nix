@@ -155,6 +155,7 @@
       enableVirtualCamera = true;
     };
     nix-ld.enable = true;
+    dconf.enable = true; # for easyeffects in home manager
   };
 
   # Allow unfree packages
