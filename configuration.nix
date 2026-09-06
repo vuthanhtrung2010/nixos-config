@@ -137,10 +137,6 @@
     isNormalUser = true;
     description = "Vu Thanh Trung";
     extraGroups = ["networkmanager" "wheel"];
-    packages = with pkgs; [
-      kdePackages.kate
-      #  thunderbird
-    ];
   };
 
   programs = {
@@ -192,6 +188,7 @@
     slurp
     cliphist
     termius
+    traceroute
   ];
 
   fonts = {
@@ -224,6 +221,7 @@
     tailscale.enable = true;
     gnome.gnome-keyring.enable = true;
     upower.enable = true; # for serpantinum and apps to get battery status
+    udisks2.enable = true;
     qemuGuest.enable = config._module.args.isProxmoxVM;
     spice-vdagentd.enable = config._module.args.isProxmoxVM;
   };
