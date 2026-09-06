@@ -1,6 +1,8 @@
 # Trung's NixOS config
+
 To get started, clone the repo, `cd` into it then:
-```
+
+```bash
 sudo nixos-rebuild switch --flake .#nixos --impure
 ```
 
@@ -13,4 +15,5 @@ NixOS on top.
 When I can step into hanland?
 
 # Secrets (for devtrung)
+
 Make sure to put old private key at `~/.config/sops/age/keys.txt` and then rebuild
