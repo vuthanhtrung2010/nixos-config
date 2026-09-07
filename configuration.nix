@@ -12,7 +12,16 @@
     ./zipline.nix
   ];
 
-  nix.settings.substituters = [ "https://aseipp-nix-cache.global.ssl.fastly.net" ];
+  nix.settings = {
+    substituters = [
+      "https://aseipp-nix-cache.global.ssl.fastly.net"
+      "https://devtrung.cachix.org"
+    ];
+    trusted-public-keys = [
+      "devtrung.cachix.org-1:sLSDEzGDJEQNZaI2OgzxXqTX8F2qTSORaz5ZAE2cwE0="
+    ];
+  };
+
 
   # experimental (better UX)
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -175,7 +184,7 @@
     })
     qt6.qtsvg
     vesktop
-    #bambu-studio
+    bambu-studio
     orca-slicer
     ffmpeg
     uv
