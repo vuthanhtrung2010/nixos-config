@@ -189,6 +189,7 @@
     cliphist
     termius
     traceroute
+    filezilla
   ];
 
   fonts = {
