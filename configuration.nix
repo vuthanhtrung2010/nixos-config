@@ -199,6 +199,8 @@
     termius
     traceroute
     filezilla
+    inkscape
+    playerctl
   ];
 
   fonts = {
