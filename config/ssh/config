@@ -3,5 +3,13 @@ Host dtth2
   User devtrung
 
 Host dtth
-    HostName 100.64.0.69
+  HostName 100.64.0.69
 	User devtrung
+
+Host local2
+  HostName 100.64.0.7
+  User devtrung
+
+Host local
+  HostName 100.64.0.6
+  User devtrung
