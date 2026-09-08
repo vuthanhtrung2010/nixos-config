@@ -201,6 +201,7 @@
     filezilla
     inkscape
     playerctl
+    proton-authenticator
   ];
 
   fonts = {
