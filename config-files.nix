@@ -27,4 +27,10 @@
 
   home.file.".ssh/id_ed25519.pub".source =
     ./config/ssh/id_ed25519.pub;
+
+  # OpenCode custom agent
+  xdg.configFile."opencode/agents" = {
+    source = ./config/opencode/agents;
+    recursive = true;
+  };
 }
