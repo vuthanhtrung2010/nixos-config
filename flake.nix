@@ -120,21 +120,18 @@
               viAlias = true;
               vimAlias = true;
 
-              initLua = ''
-                -- Set Tab = 2 spaces
-                vim.opt.tabstop = 2
-                vim.opt.softtabstop = 2
-                vim.opt.shiftwidth = 2
-                vim.opt.expandtab = true
-
-                -- Auto & Smart Indent
-                vim.opt.autoindent = true
-                vim.opt.smartindent = true
-
-                -- Bật số dòng (dễ căn chỉnh code)
-                vim.opt.number = true
-                vim.opt.relativenumber = true
-              '';
+              plugins = with pkgs.vimPlugins; [
+                nvim-tree-lua
+                nvim-treesitter
+                telescope-nvim
+                nvim-cmp
+                luasnip
+                nvim-autopairs
+                bufferline-nvim
+                tokyonight-nvim
+                competitest-nvim
+                lualine-nvim
+              ];
             };
 
             programs.git = {

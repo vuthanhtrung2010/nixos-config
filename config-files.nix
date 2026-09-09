@@ -33,4 +33,10 @@
     source = ./config/opencode/agents;
     recursive = true;
   };
+
+  # nvim
+  xdg.configFile."nvim" = {
+    source = ./config/nvim;
+    recursive = true;
+  };
 }

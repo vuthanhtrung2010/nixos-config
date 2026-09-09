@@ -1,11 +1,29 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{
+{ 
   config,
   pkgs,
   ...
-}: {
+}: let
+  bibata = pkgs.stdenvNoCC.mkDerivation {
+    pname = "bibata-modern-classic-hyprcursor";
+    version = "1.1";
+
+    src = pkgs.fetchurl {
+      url = "https://github.com/LOSEARDES77/Bibata-Cursor-hyprcursor/releases/download/v1.1/hypr_Bibata-Modern-Classic.tar.gz";
+      hash = "sha256-62TM34Dva021paPpBLLrfAOXXCZZM0d7IFKzGetwT24=";
+    };
+
+    sourceRoot = ".";
+
+    installPhase = ''
+      mkdir -p $out/share/icons/Bibata-Modern-Classic
+      cp manifest.hl $out/share/icons/Bibata-Modern-Classic/
+      cp -r hyprcursors $out/share/icons/Bibata-Modern-Classic/
+    '';
+  };
+in {
   imports = [
     # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
@@ -21,7 +39,6 @@
       "devtrung.cachix.org-1:sLSDEzGDJEQNZaI2OgzxXqTX8F2qTSORaz5ZAE2cwE0="
     ];
   };
-
 
   # experimental (better UX)
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -202,7 +219,14 @@
     inkscape
     playerctl
     proton-authenticator
+
+    bibata
   ];
+
+  environment.variables = {
+    HYPRCURSOR_THEME = "Bibata-Modern-Classic";
+    HYPRCURSOR_SIZE = "24";
+  };
 
   fonts = {
     fontconfig.enable = true;
@@ -214,8 +238,7 @@
     ];
   };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
+  # Some programs need SUID wrappers, can be configured further
   programs.mtr.enable = true;
   programs.gnupg.agent = {
     enable = true;
