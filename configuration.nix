@@ -221,6 +221,7 @@ in {
     proton-authenticator
     bubblewrap
     gcc
+    typst
     bibata # Cursor
   ];
 
