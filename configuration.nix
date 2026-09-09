@@ -220,6 +220,7 @@ in {
     playerctl
     proton-authenticator
     bubblewrap
+    gcc
     bibata # Cursor
   ];
 
