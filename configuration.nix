@@ -219,8 +219,8 @@ in {
     inkscape
     playerctl
     proton-authenticator
-
-    bibata
+    bubblewrap
+    bibata # Cursor
   ];
 
   environment.variables = {
