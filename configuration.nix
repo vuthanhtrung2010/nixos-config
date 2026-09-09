@@ -233,6 +233,7 @@ in {
   fonts = {
     fontconfig.enable = true;
     packages = with pkgs; [
+      corefonts # Include times new roman
       google-fonts
       rubik
       nerd-fonts.meslo-lg
