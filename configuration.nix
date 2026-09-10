@@ -59,7 +59,7 @@ in {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.configurationLimit = 2; # keep at most 2 generation on systemd boot
-  boot.kernelPackages = pkgs.linuxPackages; # LTS kernel, for latest kernel linuxPackages_latest
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest; # LTS kernel, for latest kernel linuxPackages_latest
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
