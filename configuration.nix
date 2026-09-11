@@ -224,6 +224,7 @@ in {
     typst
     bibata # Cursor
     postman
+    vlc
   ];
 
   environment.variables = {
