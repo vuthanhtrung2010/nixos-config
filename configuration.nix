@@ -223,6 +223,7 @@ in {
     gcc
     typst
     bibata # Cursor
+    postman
   ];
 
   environment.variables = {
