@@ -225,6 +225,7 @@ in {
     bibata # Cursor
     postman
     vlc
+    loupe
   ];
 
   environment.variables = {
