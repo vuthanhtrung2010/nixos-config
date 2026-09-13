@@ -267,6 +267,7 @@ in {
     upower.enable = true; # for serpantinum and apps to get battery status
     udisks2.enable = true;
     flatpak.enable = true;
+    postgresql.enable = true;
     qemuGuest.enable = config._module.args.isProxmoxVM;
     spice-vdagentd.enable = config._module.args.isProxmoxVM;
   };
