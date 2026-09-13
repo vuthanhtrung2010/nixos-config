@@ -28,6 +28,7 @@ in {
     # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
     ./zipline.nix
+    ./orca.nix
   ];
 
   nix.settings = {
