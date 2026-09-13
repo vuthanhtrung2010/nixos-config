@@ -228,7 +228,29 @@ in {
     loupe
     nodejs_22
     codex
+    valkey
   ];
+
+  # Valkey
+  systemd.services.valkey = {
+    description = "Valkey";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
+
+    serviceConfig = {
+      ExecStart = "${pkgs.valkey}/bin/valkey-server --bind 127.0.0.1 --port 6379";
+      Restart = "on-failure";
+      User = "valkey";
+      Group = "valkey";
+    };
+  };
+
+  users.users.valkey = {
+    isSystemUser = true;
+    group = "valkey";
+  };
+
+  users.groups.valkey = {};
 
   environment.variables = {
     HYPRCURSOR_THEME = "Bibata-Modern-Classic";
