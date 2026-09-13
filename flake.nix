@@ -107,6 +107,7 @@
             programs = {
               bun.enable = true;
               thunderbird.enable = true;
+              gh.enable = true;
             };
 
             programs.vscode = {
