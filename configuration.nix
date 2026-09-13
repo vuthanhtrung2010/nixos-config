@@ -227,6 +227,7 @@ in {
     vlc
     loupe
     nodejs_22
+    codex
   ];
 
   environment.variables = {
