@@ -11,5 +11,5 @@ Host local2
   User devtrung
 
 Host local
-  HostName 100.64.0.6
+  HostName 100.64.0.4
   User devtrung
