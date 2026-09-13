@@ -226,6 +226,7 @@ in {
     postman
     vlc
     loupe
+    nodejs_22
   ];
 
   environment.variables = {
