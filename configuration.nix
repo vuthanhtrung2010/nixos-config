@@ -230,6 +230,8 @@ in {
     nodejs_22
     codex
     valkey
+    gemini-cli
+    antigravity-cli
   ];
 
   # Valkey
@@ -239,16 +241,19 @@ in {
     after = [ "network.target" ];
 
     serviceConfig = {
-      ExecStart = "${pkgs.valkey}/bin/valkey-server --bind 127.0.0.1 --port 6379";
+      ExecStart = "${pkgs.valkey}/bin/valkey-server --bind 127.0.0.1 --port 6379 --dir /var/lib/valkey";
       Restart = "on-failure";
       User = "valkey";
       Group = "valkey";
+      StateDirectory = "valkey";
     };
   };
 
   users.users.valkey = {
     isSystemUser = true;
     group = "valkey";
+    home = "/var/lib/valkey";
+    createHome = true;
   };
 
   users.groups.valkey = {};
