@@ -1,29 +1,28 @@
-
 { pkgs, ... }:
 
 let
-  pname = "orca";
-  version = "1.4.200";
+  pname = "orca-ide";
+  version = "1.4.201";
 
   src = pkgs.fetchurl {
-    url = "https://github.com/stablyai/orca/releases/download/v1.4.200/orca-linux.AppImage";
-    hash = "sha256-yC2d31MkMeDaUexdGJmg4xWqu453/ORezOf61HM/yWo=";
+    url = "https://github.com/stablyai/orca/releases/download/v1.4.201/orca-linux.AppImage";
+    hash = "sha256-wz3WY7pC5LF+WLHvvqW7GyJ2etMgu7zeoGsnwibFI7Q=";
   };
 
   extracted = pkgs.appimageTools.extractType2 {
     inherit pname version src;
   };
 
-  orca = pkgs.appimageTools.wrapType2 {
+  orca-ide = pkgs.appimageTools.wrapType2 {
     inherit pname version src;
 
     extraInstallCommands = ''
       install -Dm644 \
         ${extracted}/orca-ide.desktop \
-        $out/share/applications/orca.desktop
+        $out/share/applications/orca-ide.desktop
 
-      substituteInPlace $out/share/applications/orca.desktop \
-        --replace-fail "Exec=AppRun %U" "Exec=orca %U"
+      substituteInPlace $out/share/applications/orca-ide.desktop \
+        --replace-fail "Exec=AppRun %U" "Exec=orca-ide %U"
 
       cp -r ${extracted}/usr/share/icons $out/share/
     '';
@@ -31,6 +30,6 @@ let
 in
 {
   environment.systemPackages = [
-    orca
+    orca-ide
   ];
 }
