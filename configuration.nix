@@ -192,6 +192,7 @@ in {
     wget
     bind # nslookup, dig, etc
     kdePackages.dolphin
+    kdePackages.ark # for dolphin zip preview & extraction
     _7zip-zstd
     fastfetch
     home-manager
