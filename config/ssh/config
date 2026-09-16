@@ -14,3 +14,12 @@ Host local
   HostName 100.64.0.4
   User devtrung
   Port 13494
+
+Host oracle
+  Hostname 100.64.0.5
+  User ubuntu
+  Port 13163
+
+Hostname bambuddy
+  Hostname 100.64.0.1
+  User devtrung
