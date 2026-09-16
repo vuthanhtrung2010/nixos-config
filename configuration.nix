@@ -233,6 +233,7 @@ in {
     valkey
     gemini-cli
     antigravity-cli
+    ncdu
   ];
 
   # Valkey
