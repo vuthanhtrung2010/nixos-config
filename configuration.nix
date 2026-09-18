@@ -29,6 +29,7 @@ in {
     /etc/nixos/hardware-configuration.nix
     ./zipline.nix
     ./orca.nix
+    ./codon.nix
   ];
 
   nix.settings = {
@@ -234,6 +235,7 @@ in {
     gemini-cli
     antigravity-cli
     ncdu
+    croc
   ];
 
   # Valkey
