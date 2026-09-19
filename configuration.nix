@@ -164,7 +164,7 @@ in {
   users.users."devtrung" = {
     isNormalUser = true;
     description = "Vu Thanh Trung";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "docker"];
   };
 
   programs = {
