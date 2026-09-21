@@ -235,6 +235,7 @@ in {
     antigravity-cli
     ncdu
     croc
+    android-tools
   ];
 
   # Valkey
