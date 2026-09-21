@@ -232,7 +232,6 @@ in {
     nodejs_22
     codex
     valkey
-    gemini-cli
     antigravity-cli
     ncdu
     croc
