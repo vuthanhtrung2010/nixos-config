@@ -28,7 +28,7 @@ in {
     # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
     ./zipline.nix
-    ./orca.nix
+    ./llms.nix
     ./codon.nix
   ];
 
@@ -39,6 +39,11 @@ in {
     ];
     trusted-public-keys = [
       "devtrung.cachix.org-1:sLSDEzGDJEQNZaI2OgzxXqTX8F2qTSORaz5ZAE2cwE0="
+    ];
+
+    extra-substituters = [ "https://cache.numtide.com" ];
+    extra-trusted-public-keys = [
+      "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
     ];
   };
 
@@ -232,7 +237,6 @@ in {
     nodejs_22
     codex
     valkey
-    antigravity-cli
     ncdu
     croc
     android-tools

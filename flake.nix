@@ -7,6 +7,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    llm-agents.url = "github:numtide/llm-agents.nix";
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,10 +22,10 @@
     home-manager,
     sops-nix,
     ...
-  }: {
+  }@inputs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = {inherit serpantinum;};
+      specialArgs = {inherit serpantinum inputs;};
       modules = [
         ./configuration.nix
 
