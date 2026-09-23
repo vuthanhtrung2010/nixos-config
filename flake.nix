@@ -176,6 +176,8 @@
                   style = "fill";
                   width = 60;
                   workspaceCount = 10;
+                  workspacesStyle = "numbers";
+                  timeStyle = "classic";
                   modules = {
                     left = [
                       "left" # quick settings
