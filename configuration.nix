@@ -240,6 +240,7 @@ in {
     ncdu
     croc
     android-tools
+    texliveFull
   ];
 
   # Valkey
