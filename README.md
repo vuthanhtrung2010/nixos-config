@@ -3,7 +3,16 @@
 To get started, clone the repo, `cd` into it then:
 
 ```bash
-sudo nixos-rebuild switch --flake .#nixos --impure
+./rebuild.sh
+# or: sudo nixos-rebuild switch --flake .#nixos --impure
+```
+
+To temporarily test changes from your local serpantinum development repo:
+
+```bash
+./rebuild.sh --local
+# or: rebuild-local
+# or: sudo nixos-rebuild switch --flake .#nixos --impure --override-input serpantinum /home/devtrung/orca/workspaces/serpantinum/fix-wallpaper-choosing
 ```
 
 and yes you got the working system.

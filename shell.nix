@@ -21,6 +21,11 @@
       ];
     };
 
+    shellAliases = {
+      rebuild = "/home/devtrung/nixos-config/rebuild.sh";
+      rebuild-local = "/home/devtrung/nixos-config/rebuild.sh --local";
+    };
+
     plugins = [
       {
         name = "powerlevel10k";
