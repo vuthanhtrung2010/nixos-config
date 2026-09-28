@@ -241,6 +241,7 @@ in {
     croc
     android-tools
     texliveFull
+    devenv
   ];
 
   # Valkey
