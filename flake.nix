@@ -22,7 +22,7 @@
     home-manager,
     sops-nix,
     ...
-  }@inputs: {
+  } @ inputs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {inherit serpantinum inputs;};
@@ -41,7 +41,7 @@
           home-manager.extraSpecialArgs = {inherit serpantinum;};
           home-manager.users.devtrung = {pkgs, ...}: {
             home.stateVersion = "26.11";
-            
+
             # Tell gtk & qt to use dark theme
             gtk = {
               enable = true;

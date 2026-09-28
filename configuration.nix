@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ 
+{
   config,
   pkgs,
   ...
@@ -41,7 +41,7 @@ in {
       "devtrung.cachix.org-1:sLSDEzGDJEQNZaI2OgzxXqTX8F2qTSORaz5ZAE2cwE0="
     ];
 
-    extra-substituters = [ "https://cache.numtide.com" ];
+    extra-substituters = ["https://cache.numtide.com"];
     extra-trusted-public-keys = [
       "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
     ];
@@ -146,6 +146,11 @@ in {
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  services.logind.settings.Login = {
+    HandlePowerKey = "ignore";
+    HandlePowerKeyLongPress = "ignore";
+  };
+
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -248,8 +253,8 @@ in {
   # Valkey
   systemd.services.valkey = {
     description = "Valkey";
-    wantedBy = [ "multi-user.target" ];
-    after = [ "network.target" ];
+    wantedBy = ["multi-user.target"];
+    after = ["network.target"];
 
     serviceConfig = {
       ExecStart = "${pkgs.valkey}/bin/valkey-server --bind 127.0.0.1 --port 6379 --dir /var/lib/valkey";
@@ -289,7 +294,7 @@ in {
   programs.mtr.enable = true;
   programs.gnupg.agent = {
     enable = true;
-  #   enableSSHSupport = true;
+    #   enableSSHSupport = true;
   };
 
   # Enable the OpenSSH daemon.
