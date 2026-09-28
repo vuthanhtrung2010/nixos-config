@@ -230,7 +230,7 @@ in {
     bubblewrap
     gcc
     typst
-    bibata # Cursor
+    bibata # Cursor theme
     postman
     vlc
     loupe
@@ -242,6 +242,7 @@ in {
     android-tools
     texliveFull
     devenv
+    glab
   ];
 
   # Valkey
