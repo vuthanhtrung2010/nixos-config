@@ -44,6 +44,10 @@
     settings = {
       shell = "${pkgs.zsh}/bin/zsh";
     };
+
+    extraConfig = ''
+      remember_window_size no
+    '';
   };
 
   programs.eza = {

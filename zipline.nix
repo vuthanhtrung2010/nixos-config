@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-let
+{pkgs, ...}: let
   ziplineScript = pkgs.writeShellScriptBin "zipline-screenshot" ''
     if [ -f /etc/nix-secrets/zipline-token ]; then
         Z_TOKEN=$(cat /etc/nix-secrets/zipline-token)
@@ -29,7 +27,6 @@ let
     printf '%s' "$url" | ${pkgs.wl-clipboard}/bin/wl-copy
     ${pkgs.wl-clipboard}/bin/wl-copy --type image/png < /tmp/screenshot.png
   '';
-in
-{
-  environment.systemPackages = [ ziplineScript ];
+in {
+  environment.systemPackages = [ziplineScript];
 }
