@@ -136,8 +136,51 @@
         "home-manager": "home-manager",
         "llm-agents": "llm-agents",
         "nixpkgs": "nixpkgs",
+        "rustfs": "rustfs",
         "serpantinum": "serpantinum",
         "sops-nix": "sops-nix"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "rustfs",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1789802016,
+        "narHash": "sha256-QVFfArbYaQMGK4dFV+5RUL72Ci+hNHVhaF/R9qJfDhs=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "26a71e661c47bd21a05d06fec749f3f7c75e9d12",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "rustfs": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": "rust-overlay"
+      },
+      "locked": {
+        "lastModified": 1790997011,
+        "narHash": "sha256-VeSI8yavsIaikmYJstDgBgkmET6PW+bN/bH0ojXAf1s=",
+        "owner": "rustfs",
+        "repo": "rustfs",
+        "rev": "f07142910cf584d25d780dec364bc737ffce790d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rustfs",
+        "repo": "rustfs",
+        "type": "github"
       }
     },
     "serpantinum": {

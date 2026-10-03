@@ -16,6 +16,11 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    rustfs = {
+      url = "github:rustfs/rustfs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

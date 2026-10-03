@@ -30,6 +30,7 @@ in {
     ./zipline.nix
     ./llms.nix
     ./codon.nix
+    ./rustfs.nix
   ];
 
   nix.settings = {
