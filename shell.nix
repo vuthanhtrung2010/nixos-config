@@ -9,6 +9,9 @@
       [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
       export BUN_INSTALL_BIN="$HOME/.bun/bin"
       export PATH="$HOME/.local/bin:$HOME/.bun/bin:$PATH"
+      if [[ "$TERM" == "xterm-kitty" ]]; then
+      	alias ssh="kitty +kitten ssh"
+      fi
       fastfetch
     '';
 
