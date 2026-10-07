@@ -7,5 +7,6 @@
     inputs.llm-agents.packages.${pkgs.system}.orca
     inputs.llm-agents.packages.${pkgs.system}.antigravity-cli
     inputs.llm-agents.packages.${pkgs.system}.chatgpt
+    inputs.llm-agents.packages.${pkgs.system}.copilot-cli
   ];
 }

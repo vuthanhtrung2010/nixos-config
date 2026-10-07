@@ -114,6 +114,7 @@ in {
   users.users.uinput_proxy = {
     isSystemUser = true;
     group = "uinput_proxy";
+    extraGroups = [ "input" "uinput" ];
     description = "Uinput proxy user for fcitx5-lotus";
   };
   users.groups.uinput_proxy = {};
@@ -314,6 +315,7 @@ in {
     flatpak.enable = true;
     postgresql.enable = true;
     vnstat.enable = true; # Tracks network usages
+    zapret2.enable = true; # Fuck vietnamese ISP
     qemuGuest.enable = config._module.args.isProxmoxVM;
     spice-vdagentd.enable = config._module.args.isProxmoxVM;
   };
