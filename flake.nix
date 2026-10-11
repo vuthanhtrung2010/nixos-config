@@ -126,6 +126,7 @@
             };
 
             programs.zed-editor.enable = true;
+            programs.dbeaver.enable = true;
 
             programs.neovim = {
               enable = true;

@@ -317,7 +317,6 @@ in {
     flatpak.enable = true;
     postgresql.enable = true;
     vnstat.enable = true; # Tracks network usages
-    zapret2.enable = true; # Fuck vietnamese ISP
     qemuGuest.enable = config._module.args.isProxmoxVM;
     spice-vdagentd.enable = config._module.args.isProxmoxVM;
   };
@@ -329,7 +328,6 @@ in {
   networking.firewall = {
     enable = true;
     trustedInterfaces = [ "tailscale0" ];
-    checkReversePath = "loose";
   };
 
   # This value determines the NixOS release from which the default
