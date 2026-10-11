@@ -252,6 +252,7 @@ in {
     glab
     nil # language server for nix
     nixd # language server for nix again??
+    dotenvx
   ];
 
   # Valkey
