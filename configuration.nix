@@ -146,7 +146,10 @@ in {
   };
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.hplipWithPlugin ];
+  };
 
   services.logind.settings.Login = {
     HandlePowerKey = "ignore";
