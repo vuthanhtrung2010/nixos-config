@@ -254,6 +254,7 @@ in {
     nixd # language server for nix again??
     dotenvx
     jdk17
+    jadx # APK reverse engineering tool
   ];
 
   # Valkey
