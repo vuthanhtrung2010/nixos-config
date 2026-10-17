@@ -258,6 +258,8 @@ in {
     dotenvx
     jdk17
     jadx # APK reverse engineering tool
+    flutter # I love app dev
+    mesa-demos
   ];
 
   # Valkey
@@ -334,6 +336,11 @@ in {
   networking.firewall = {
     enable = true;
     trustedInterfaces = [ "tailscale0" ];
+  };
+
+  zramSwap = {
+    enable = true;
+    memoryPercent = 25;
   };
 
   # This value determines the NixOS release from which the default
