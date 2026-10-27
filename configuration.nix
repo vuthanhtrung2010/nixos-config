@@ -240,6 +240,7 @@ in {
     bubblewrap
     gcc
     typst
+    tinymist
     bibata # Cursor theme
     postman
     vlc

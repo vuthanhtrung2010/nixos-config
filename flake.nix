@@ -134,17 +134,34 @@
               viAlias = true;
               vimAlias = true;
 
+              extraLuaConfig = builtins.readFile ./config/nvim/init.lua;
+
               plugins = with pkgs.vimPlugins; [
                 nvim-tree-lua
-                nvim-treesitter
+                (nvim-treesitter.withPlugins (p: [
+                  p.typst
+                  p.c
+                  p.cpp
+                  p.nix
+                  p.lua
+                  p.markdown
+                  p.markdown_inline
+                  p.bash
+                  p.python
+                ]))
                 telescope-nvim
+                plenary-nvim
                 nvim-cmp
+                cmp_luasnip
+                cmp-buffer
+                cmp-path
                 luasnip
                 nvim-autopairs
                 bufferline-nvim
                 tokyonight-nvim
-                competitest-nvim
+                typst-preview-nvim
                 lualine-nvim
+                nvim-web-devicons
               ];
             };
 
