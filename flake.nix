@@ -162,6 +162,8 @@
                 typst-preview-nvim
                 lualine-nvim
                 nvim-web-devicons
+                dropbar-nvim
+                nvim-treesitter-context
               ];
             };
 
