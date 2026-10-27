@@ -191,7 +191,7 @@ in {
     serpantinum.enable = true;
     obs-studio = {
       enable = true;
-      enableVirtualCamera = true;
+      #enableVirtualCamera = true;
     };
     nix-ld.enable = true;
     dconf.enable = true; # for easyeffects in home manager
@@ -219,7 +219,7 @@ in {
     })
     qt6.qtsvg
     vesktop
-    bambu-studio
+    #bambu-studio
     orca-slicer
     ffmpeg
     uv
