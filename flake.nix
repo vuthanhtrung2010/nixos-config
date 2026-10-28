@@ -134,7 +134,7 @@
               viAlias = true;
               vimAlias = true;
 
-              extraLuaConfig = builtins.readFile ./config/nvim/init.lua;
+              initLua = builtins.readFile ./config/nvim/init.lua;
 
               plugins = with pkgs.vimPlugins; [
                 nvim-tree-lua
