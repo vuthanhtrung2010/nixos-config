@@ -31,6 +31,7 @@ in {
     ./llms.nix
     ./codon.nix
     ./rustfs.nix
+    ./searxng.nix
   ];
 
   nix.settings = {
@@ -204,6 +205,8 @@ in {
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     appimage-run
+    sops
+    age
     vim
     wget
     bind # nslookup, dig, etc
