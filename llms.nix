@@ -9,5 +9,6 @@
     #inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.chatgpt
     inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.copilot-cli
     inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.zcode
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode
   ];
 }
