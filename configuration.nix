@@ -262,6 +262,7 @@ in {
     jadx # APK reverse engineering tool
     flutter # I love app dev
     mesa-demos
+    wireguard-tools
   ];
 
   # Valkey
