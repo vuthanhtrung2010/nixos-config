@@ -196,6 +196,7 @@ in {
     };
     nix-ld.enable = true;
     dconf.enable = true; # for easyeffects in home manager
+    seahorse.enable = true;
   };
 
   # Allow unfree packages
@@ -263,6 +264,8 @@ in {
     flutter # I love app dev
     mesa-demos
     wireguard-tools
+    glib
+    libsecret
   ];
 
   # Valkey
