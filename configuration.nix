@@ -216,9 +216,6 @@ in {
     home-manager
     btop
     wl-clipboard
-    (ungoogled-chromium.override {
-      enableWideVine = true;
-    })
     qt6.qtsvg
     vesktop
     #bambu-studio
