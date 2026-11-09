@@ -50,6 +50,7 @@
 
     extraConfig = ''
       remember_window_size no
+      include themes/serpantinum.conf
     '';
   };
 
