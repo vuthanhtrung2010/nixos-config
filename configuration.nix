@@ -267,6 +267,7 @@ in {
     glib
     libsecret
     qt6Packages.qt6ct
+    thorium-avx512
   ];
 
   # Valkey
