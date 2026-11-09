@@ -1,0 +1,34 @@
+{
+  "version": "156.0.8078.80",
+  "tag": "M156.0.8078.80",
+  "variants": {
+    "x86_64-linux": {
+      "avx": {
+        "url": "https://github.com/gz83/thorium/releases/download/M156.0.8078.80/Thorium_Browser_156.0.8078.80_AVX.AppImage",
+        "hash": "sha256-jEmlWMCxmoUwe6acFc2XH3NZENldByI90IG1/g8f6Vc="
+      },
+      "avx2": {
+        "url": "https://github.com/gz83/thorium/releases/download/M156.0.8078.80/Thorium_Browser_156.0.8078.80_AVX2.AppImage",
+        "hash": "sha256-M9QOCPvYtHPhm76EWKzqlg2Sk2d3FTjODm8cD5zlNA8="
+      },
+      "avx512": {
+        "url": "https://github.com/gz83/thorium/releases/download/M156.0.8078.80/Thorium_Browser_156.0.8078.80_AVX512.AppImage",
+        "hash": "sha256-S5lnjMGKzXpYA9WzQHklRnAvENwt0AioxdK1furS2qc="
+      },
+      "sse3": {
+        "url": "https://github.com/gz83/thorium/releases/download/M156.0.8078.80/Thorium_Browser_156.0.8078.80_SSE3.AppImage",
+        "hash": "sha256-6Bqq7L/QKQaFLO86ALqLgp2UJe5Wn00XU6hSyoSJNxg="
+      },
+      "sse4": {
+        "url": "https://github.com/gz83/thorium/releases/download/M156.0.8078.80/Thorium_Browser_156.0.8078.80_SSE4.AppImage",
+        "hash": "sha256-mlNqYzHZBiBY4UmldiLkCJpXTHRcMCmwuKt9v5fbHGA="
+      }
+    },
+    "aarch64-linux": {
+      "arm64": {
+        "url": "https://github.com/gz83/thorium/releases/download/M156.0.8078.80/Thorium_Browser_156.0.8078.80_arm64.AppImage",
+        "hash": "sha256-3rbz6wNJ/XUeUzsU/a3e9Rsx65rxksTNGaad1P0S/Pc="
+      }
+    }
+  }
+}
