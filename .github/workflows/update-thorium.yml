@@ -1,0 +1,99 @@
+name: Update Thorium Browser
+
+'on':
+  schedule:
+    # Run twice daily at 02:00 and 14:00 UTC
+    - cron: '0 2,14 * * *'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Specific release tag to target (e.g. M156.0.8078.80)'
+        required: false
+        type: string
+      force:
+        description: 'Force re-hashing even if tag matches'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  check-and-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v16
+
+      - name: Run updater script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ARGS=""
+          if [ "${{ inputs.force }}" = "true" ]; then
+            ARGS="$ARGS --force"
+          fi
+          if [ -n "${{ inputs.tag }}" ]; then
+            ARGS="$ARGS --tag ${{ inputs.tag }}"
+          fi
+          python3 packages/thorium/update.py $ARGS
+
+      - name: Check for updates
+        id: check_diff
+        run: |
+          if git diff --quiet packages/thorium/hashes.json; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No update needed."
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            VERSION=$(jq -r '.version' packages/thorium/hashes.json)
+            TAG=$(jq -r '.tag' packages/thorium/hashes.json)
+            echo "version=$VERSION" >> $GITHUB_OUTPUT
+            echo "tag=$TAG" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Verify derivation dry-run
+        if: steps.check_diff.outputs.changed == 'true'
+        run: |
+          nix build .#thorium --dry-run
+
+      - name: Commit and push branch
+        if: steps.check_diff.outputs.changed == 'true'
+        env:
+          VERSION: ${{ steps.check_diff.outputs.version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          BRANCH_NAME="update/thorium-${VERSION}"
+          git checkout -b "$BRANCH_NAME"
+          git add packages/thorium/hashes.json
+          git commit -m "feat(thorium): update to ${VERSION}"
+          git push origin "$BRANCH_NAME" --force
+
+      - name: Create Pull Request and Enable Auto-Merge
+        if: steps.check_diff.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.check_diff.outputs.version }}
+          TAG: ${{ steps.check_diff.outputs.tag }}
+        run: |
+          BRANCH_NAME="update/thorium-${VERSION}"
+          PR_URL=$(gh pr create \
+            --title "feat(thorium): update to ${VERSION}" \
+            --body "Automated update of Thorium Browser to [${TAG}](https://github.com/gz83/thorium/releases/tag/${TAG})." \
+            --base master \
+            --head "$BRANCH_NAME")
+          echo "Created PR: $PR_URL"
+          gh pr merge "$PR_URL" --auto --merge
