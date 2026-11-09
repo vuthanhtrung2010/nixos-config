@@ -266,6 +266,7 @@ in {
     wireguard-tools
     glib
     libsecret
+    qt6Packages.qt6ct
   ];
 
   # Valkey
