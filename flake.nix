@@ -30,7 +30,46 @@
     home-manager,
     sops-nix,
     ...
-  } @ inputs: {
+  } @ inputs: let
+    supportedSystems = [
+      "x86_64-linux"
+      "aarch64-linux"
+    ];
+    forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+  in {
+    packages = forAllSystems (system:
+      let
+        pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        };
+        isX86 = system == "x86_64-linux";
+        isAarch64 = system == "aarch64-linux";
+      in {
+        thorium = pkgs.callPackage ./packages/thorium/package.nix {};
+      }
+      // nixpkgs.lib.optionalAttrs isX86 {
+        thorium-avx512 = pkgs.callPackage ./packages/thorium/package.nix { variant = "avx512"; };
+        thorium-avx2 = pkgs.callPackage ./packages/thorium/package.nix { variant = "avx2"; };
+        thorium-avx = pkgs.callPackage ./packages/thorium/package.nix { variant = "avx"; };
+        thorium-sse4 = pkgs.callPackage ./packages/thorium/package.nix { variant = "sse4"; };
+        thorium-sse3 = pkgs.callPackage ./packages/thorium/package.nix { variant = "sse3"; };
+      }
+      // nixpkgs.lib.optionalAttrs isAarch64 {
+        thorium-arm64 = pkgs.callPackage ./packages/thorium/package.nix { variant = "arm64"; };
+      }
+    );
+
+    overlays.default = final: prev: {
+      thorium = final.callPackage ./packages/thorium/package.nix {};
+      thorium-avx512 = final.callPackage ./packages/thorium/package.nix { variant = "avx512"; };
+      thorium-avx2 = final.callPackage ./packages/thorium/package.nix { variant = "avx2"; };
+      thorium-avx = final.callPackage ./packages/thorium/package.nix { variant = "avx"; };
+      thorium-sse4 = final.callPackage ./packages/thorium/package.nix { variant = "sse4"; };
+      thorium-sse3 = final.callPackage ./packages/thorium/package.nix { variant = "sse3"; };
+      thorium-arm64 = final.callPackage ./packages/thorium/package.nix { variant = "arm64"; };
+    };
+
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {inherit serpantinum inputs;};
