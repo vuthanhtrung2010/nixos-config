@@ -30,7 +30,6 @@ in {
     ./zipline.nix
     ./llms.nix
     ./codon.nix
-    ./rustfs.nix
     ./searxng.nix
   ];
 
@@ -265,6 +264,8 @@ in {
     libsecret
     qt6Packages.qt6ct
     thorium-avx512
+    voxtype-vulkan
+    vulkan-tools
   ];
 
   # Valkey
