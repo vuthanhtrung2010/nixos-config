@@ -20,6 +20,11 @@ Host oracle
   User ubuntu
   Port 13163
 
-Hostname bambuddy
+Host bambuddy
   Hostname 100.64.0.1
   User devtrung
+
+Host gcp
+  Hostname 100.64.0.13
+  User devtrung
+  Port 56284
