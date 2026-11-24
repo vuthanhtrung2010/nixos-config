@@ -329,7 +329,15 @@ in {
     upower.enable = true; # for serpantinum and apps to get battery status
     udisks2.enable = true;
     flatpak.enable = true;
-    postgresql.enable = true;
+    postgresql = {
+      enable = true;
+      extensions = ps: with ps; [
+        timescaledb
+      ];
+      settings = {
+        shared_preload_libraries = "timescaledb";
+      };
+    };
     vnstat.enable = true; # Tracks network usages
     qemuGuest.enable = config._module.args.isProxmoxVM;
     spice-vdagentd.enable = config._module.args.isProxmoxVM;
